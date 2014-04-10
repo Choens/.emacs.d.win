@@ -1,0 +1,41 @@
+-- =============================================================================
+-- qCIN_PROBLEMS
+--
+-- Provides a query (since I can't have a view) to enable me to look at the
+-- CIN problem more carefully.
+-- =============================================================================
+select
+    cin
+    ,hh_id
+    ,report_date
+    ,mid_is_num
+    ,beg_is_str
+    ,end_is_str
+    ,cin_len
+    ,case when mid_is_num = 1
+               and beg_is_str = 1
+               and end_is_str = 1
+               and cin_len = 8
+          then 1 else 0
+      end valid
+    ,"mid"
+    ,"beg"
+    ,"end"
+from (
+      select
+          cin
+          ,hh_id
+          ,report_date
+          ,case when upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+                then 1 else 0 end mid_is_num
+          ,case when upper(substr(CIN,1,2)) = lower(substr(CIN,1,2))
+                then 0 else 1 end beg_is_str
+          ,case when upper(substr(CIN,8,8)) = lower(substr(CIN,8,8))
+                then 0 else 1 end end_is_str
+          ,length(CIN) AS cin_len
+          ,substr(CIN,3,5) "mid"
+          ,substr(CIN,1,2) "beg"
+          ,substr(CIN,8,8) "end"
+      from axc38.t_hh_tmp
+    ) src0
+;

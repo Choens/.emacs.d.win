@@ -1,0 +1,234 @@
+-- =============================================================================
+-- Rows Where The Provided CIN is not REALLY A CIN
+-- =============================================================================
+
+-- I can't seem to write a view, so this is the best I can do.
+
+select
+    cin
+    ,hh_id
+    ,report_date
+    ,mid_is_num
+    ,beg_is_str
+    ,end_is_str
+    ,cin_len
+    ,case when mid_is_num = 1
+               and beg_is_str = 1
+               and end_is_str = 1
+               and cin_len = 8
+          then 1 else 0
+      end valid
+    ,mid_part
+    ,beg_part
+    ,end_part
+from (
+      select
+          cin
+          ,hh_id
+          ,report_date
+          ,case when upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+                then 1 else 0 end mid_is_num
+          ,case when upper(substr(CIN,1,2)) = lower(substr(CIN,1,2))
+                then 0 else 1 end beg_is_str
+          ,case when upper(substr(CIN,8,8)) = lower(substr(CIN,8,8))
+                then 0 else 1 end end_is_str
+          ,length(CIN) AS cin_len
+          ,substr(CIN,3,5) mid_part
+          ,substr(CIN,1,2) beg_part
+          ,substr(CIN,8,8) end_part
+      from axc38.t_hh_tmp
+    ) src0
+;
+
+
+-- =============================================================================
+-- Number of Problem CINS by Report Date
+-- =============================================================================
+
+select
+    report_date
+    ,sum( case when mid_is_num = 1
+               and beg_is_str = 1
+               and end_is_str = 1
+               and cin_len = 8
+          then 1 else 0
+      end) valid
+    ,sum(
+         case when mid_is_num = 1
+                   and beg_is_str = 1
+                   and end_is_str = 1
+                   and cin_len = 8
+               then 0 else 1
+         end
+        ) invalid
+    ,count(*) Total
+from (
+      select
+          cin
+          ,hh_id
+          ,report_date
+          ,case when upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+                then 1 else 0 end mid_is_num
+          ,case when upper(substr(CIN,1,2)) = lower(substr(CIN,1,2))
+                then 0 else 1 end beg_is_str
+          ,case when upper(substr(CIN,8,8)) = lower(substr(CIN,8,8))
+                then 0 else 1 end end_is_str
+          ,length(CIN) AS cin_len
+          ,substr(CIN,3,5) mid_part
+          ,substr(CIN,1,2) beg_part
+          ,substr(CIN,8,8) end_part
+      from axc38.t_hh_tmp
+    ) src0
+group by
+    report_date
+order by
+    report_date
+;
+
+
+-- =============================================================================
+-- Number of Problem CINS (In Descending N Count) Grouped by HH and Report
+-- =============================================================================
+
+select
+    src0.report_date
+    ,src0.hh_id
+    ,hhh.health_home_program_name
+    ,sum( case when mid_is_num = 1
+               and beg_is_str = 1
+               and end_is_str = 1
+               and cin_len = 8
+          then 1 else 0
+      end) valid
+    ,sum( case when mid_is_num = 1
+               and beg_is_str = 1
+               and end_is_str = 1
+               and cin_len = 8
+          then 0 else 1
+      end) invalid
+    ,count(*) Total
+from (
+      select
+          cin
+          ,hh_id
+          ,report_date
+          ,case when upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+                then 1 else 0 end mid_is_num
+          ,case when upper(substr(CIN,1,2)) = lower(substr(CIN,1,2))
+                then 0 else 1 end beg_is_str
+          ,case when upper(substr(CIN,8,8)) = lower(substr(CIN,8,8))
+                then 0 else 1 end end_is_str
+          ,length(CIN) AS cin_len
+          ,substr(CIN,3,5) mid_part
+          ,substr(CIN,1,2) beg_part
+          ,substr(CIN,8,8) end_part
+      from axc38.t_hh_tmp
+    ) src0
+    left join hhweb.hh_health_homes hhh
+    on src0.hh_id = cast( hhh.health_home_mmis_id  as int)
+group by
+    src0.report_date
+    ,src0.hh_id
+    ,hhh.health_home_program_name
+order by
+    src0.report_date
+    ,src0.hh_id
+;
+
+
+-- =============================================================================
+-- BASIC COUNTS!
+-- =============================================================================
+
+-- With Everything!
+select report_date, count(*)
+from axc38.t_hh_tmp
+group by report_date
+order by report_date
+;
+
+select report_date, count(distinct cin)
+from axc38.t_hh_tmp
+group by report_date
+order by report_date
+;
+
+select report_date, count(*)
+from ( select distinct cin, hh_id, report_date from axc38.t_hh_tmp ) src0
+group by report_date
+order by report_date
+;
+
+-- Removing Invalid CINS
+select report_date, count(*)
+from axc38.t_hh_tmp
+where
+    upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+    and upper(substr(CIN,1,2)) != lower(substr(CIN,1,2))
+    and upper(substr(CIN,8,8)) != lower(substr(CIN,8,8))
+    and length(CIN) = 8
+group by report_date
+order by report_date
+;
+
+select report_date, count(distinct cin)
+from axc38.t_hh_tmp
+where
+    upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+    and upper(substr(CIN,1,2)) != lower(substr(CIN,1,2))
+    and upper(substr(CIN,8,8)) != lower(substr(CIN,8,8))
+    and length(CIN) = 8
+group by report_date
+order by report_date
+;
+
+select report_date, count(*)
+from (
+       select distinct cin, hh_id, report_date
+       from axc38.t_hh_tmp
+       where
+           upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+           and upper(substr(CIN,1,2)) != lower(substr(CIN,1,2))
+           and upper(substr(CIN,8,8)) != lower(substr(CIN,8,8))
+           and length(CIN) = 8
+     ) src0
+group by report_date
+order by report_date
+;
+
+
+-- =============================================================================
+-- Discounting The Invalid CINS, How Many Connections Can We Make to HHWEB?
+-- =============================================================================
+
+select
+    report_date
+    ,sum( case when recip_id is null then 1 else 0 end ) missing
+    ,count(*) total
+from (
+       select
+           report_date
+           ,tht.cin
+           ,tht.hh_id
+           ,hrp.recip_id
+       from (
+             select distinct cin, hh_id, report_date
+             from axc38.t_hh_tmp
+             where
+                 upper(substr(CIN,3,5)) like lower(substr(CIN,3,5))
+                 and upper(substr(CIN,1,2)) != lower(substr(CIN,1,2))
+                 and upper(substr(CIN,8,8)) != lower(substr(CIN,8,8))
+                 and length(CIN) = 8
+            ) tht
+            left join
+            (
+             select distinct recip_id, cast(health_home_mmis_id as int) health_home_mmis_id
+             from hhweb.hh_recip_profile
+             where cal_month between to_date('2013-01-01', 'yyyy-mm-dd') and to_date('2013-12-31','yyyy-mm-dd')
+            ) hrp
+            on tht.cin = hrp.recip_id
+               and tht.hh_id =  hrp.health_home_mmis_id
+     ) src0
+group by report_date
+order by report_date
+;
