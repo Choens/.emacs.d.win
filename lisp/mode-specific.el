@@ -44,9 +44,12 @@
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 (setq ess-use-auto-complete t)
-(setq ess-help-own-frame f)
+(setq ess-help-own-frame nil)
 
-; This is (hopefully) a less annoying setup for assignment.
+; This is (hopefully) a less annoying setup for assignment.(setq ess-S-assign-key (kbd "C-="))
+(ess-toggle-S-assign-key t) ; enable above key definition
+;; leave my underscore key alone!
+(ess-toggle-underscore nil)
 (setq ess-S-assign-key (kbd "C-="))
 (ess-toggle-S-assign-key t)
 (ess-toggle-underscore nil)
