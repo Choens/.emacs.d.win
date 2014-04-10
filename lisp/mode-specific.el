@@ -46,10 +46,6 @@
 (setq ess-use-auto-complete t)
 (setq ess-help-own-frame nil)
 
-; This is (hopefully) a less annoying setup for assignment.(setq ess-S-assign-key (kbd "C-="))
-(ess-toggle-S-assign-key t) ; enable above key definition
-;; leave my underscore key alone!
-(ess-toggle-underscore nil)
 (setq ess-S-assign-key (kbd "C-="))
 (ess-toggle-S-assign-key t)
 (ess-toggle-underscore nil)
@@ -135,7 +131,6 @@
       (append '(("\\.sql$" . sql-mode)
                 ("\\.tbl$" . sql-mode)
                 ("\\.sp$"  . sql-mode))
-                ("\\.ddl$"  . sql-mode))
               auto-mode-alist))
 
 ;(set 'sql-sqlite-program "sqlite3")
