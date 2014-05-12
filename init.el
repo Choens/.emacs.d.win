@@ -31,7 +31,7 @@
 ;; =============================================================================
 ;; -- Package Archives --
 ;; =============================================================================
-(load "package" )  ;; TODO - I can't seem to get autoload to work. Why?
+(require 'package)  ;; TODO - I can't seem to get autoload to work. Why?
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -43,12 +43,16 @@
 ;; -- Editor Settings --
 ;; =============================================================================
 
+;;(server-start)
+
 ;; -----------------------------------------------------------------------------
 ;; -- Theme --
 ;; Uncomment preferred theme
 ;; -----------------------------------------------------------------------------
-; TODO (load-theme 'solarized-light t)
+; TODO 
+;;(load-theme 'solarized-light t)
 ;;(load-theme 'solarized-dark t)
+(load-theme 'tango-dark t)
 
 ;; -----------------------------------------------------------------------------
 ;; -- Frames --
@@ -57,8 +61,8 @@
 ;; - Enables tool-bar
 ;; - Pop-Up / Special buffers must create new frame
 ;; -----------------------------------------------------------------------------
-(menu-bar-mode t)
-(tool-bar-mode t)
+;;(menu-bar-mode t)
+;;(tool-bar-mode t)
 
 ;;(set 'pop-up-frames t)
 ;; (setq special-display-buffer-names
@@ -95,7 +99,14 @@
 (setq column-number-mode t)
 (set-scroll-bar-mode nil)
 (show-paren-mode t)
-; TODO (bar-cursor-mode 1)
+(set-default 'cursor-type 'bar)
+
+; EVAL ------------------------
+(setq blink-cursor-mode nil)
+(setq x-stretch-cursor 1)
+(setq global-hl-line-mode t)
+; EVAL ------------------------
+
 (setq visible-bell t)
 (setq fill-column 80)
 (setq truncate-lines t)
@@ -129,50 +140,8 @@
 
 
 ;; =============================================================================
-;; -- Mode Specific Settings --
+;; -- Load Custom Lisp --
 ;; =============================================================================
-;TODO (load "mode-specific-config.el" )
-
-;; =============================================================================
-;; -- Miscellaneous Lisp --
-;; =============================================================================
+(load "key-bindings.el" )
 (load "misc.el" )
-
-;; =============================================================================
-;; -- Aliases --
-;; =============================================================================
-(defalias 'ttl 'toggle-truncate-lines)
-
-;; =============================================================================
-;; -- Key Bindings --
-;; =============================================================================
-;; This is last b/c it references functions defined in the preceding menagerie.
-; TODO (load "key-bindings.el" )
-
-
-;; =============================================================================
-;; -- Start New Session --
-;;
-;; - Sets EDE mode to global
-;; - Inhibits Emacs startup message
-;; - Opens useful files by default
-;; - Initializes the Emacs server
-;; =============================================================================
-(global-ede-mode t)
-(setq inhibit-startup-message t)
-;(find-file "~/Documents/Andy.org")
-;(find-file "~/Documents/Work.org")
-;;(server-start)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load "mode-specific.el" )

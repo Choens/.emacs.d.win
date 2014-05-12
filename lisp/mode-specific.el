@@ -39,16 +39,15 @@
 ;; ESS is the layer connecting Emacs to R, SAS, etc.
 ;; -
 ;; =============================================================================
+(autoload 'ess-R-data-view "ess-R-data-view.el")
 (setq-default ess-indent-offset 4)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 (setq ess-use-auto-complete t)
 (setq ess-help-own-frame nil)
-
 (setq ess-S-assign-key (kbd "C-="))
-(ess-toggle-S-assign-key t)
-(ess-toggle-underscore nil)
+(setq ess-toggle-S-assign-key t)
 
 
 ;; =============================================================================
@@ -64,16 +63,15 @@
 ;; =============================================================================
 ;; -- Markdown Mode
 ;; =============================================================================
-;(autoload 'markdown-mode "markdown-mode.el"
-;   "Major mode for editing Markdown files" t)
+(autoload 'markdown-mode "markdown-mode.el" t)
 
-;(setq auto-mode-alist
-;      (append '(
-;                ("\\.text" . markdown-mode)
-;                ("\\.md" . markdown-mode)
-;                ("\\.Rmd" . markdown-mode)
-;                )
-;              auto-mode-alist))
+(setq auto-mode-alist
+      (append '(
+                ("\\.text" . markdown-mode)
+                ("\\.md" . markdown-mode)
+                ("\\.Rmd" . markdown-mode)
+                )
+              auto-mode-alist))
 
 
 ;; =============================================================================

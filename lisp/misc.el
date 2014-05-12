@@ -19,35 +19,41 @@
 ;; =============================================================================
 
 ;; -- User-Specific Files --
-;(defun open-todo ()
-;  (interactive)
-;  (find-file "~/Documents/ToDo.org"))
+(defun open-passwords ()
+  (interactive)
+  (find-file "~/Documents/Passwords.org"))
 
-;(defun open-goals ()
-;  (interactive)
-;  (find-file "~/Documents/Goals.org"))
+(defun open-andy ()
+  (interactive)
+  (find-file "~/Git/Notes/Andy-TODO.org"))
 
-;(defun open-passwords ()
-;  (interactive)
-;  (find-file "~/Documents/Passwords.org.gpg"))
+(defun open-buy ()
+  (interactive)
+  (find-file "~/Git/Notes/Buy-TODO.org"))
 
-;(defun open-andy ()
-;  (interactive)
-;  (find-file "~/Documents/Andy.org"))
+(defun open-work ()
+  (interactive)
+  (find-file "~/Git/Notes/Work-TODO.org"))
 
-;(defun open-shopping ()
-;  (interactive)
-;  (find-file "~/Documents/Shopping.org"))
-
+(defun open-templates-file ()
+  (interactive)
+  (find-file "~/Git/analytic_templates/file_templates"))
+ 
+(defun open-templates-proj ()
+  (interactive)
+  (find-file "~/Git/analytic_templates/project_templates"))
+ 
+(defun open-templates-snip ()
+  (interactive)
+  (find-file "~/Git/analytic_templates/snippets"))
 ;; -- Emacs-Specific Files --
-;(defun open-init ()
-;  (interactive)
-;  (find-file "~/.emacs.d/init.el"))
+(defun open-init ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
 
-;(defun open-sql-conn ()
-;  (interactive)
-;  (find-file "~/Ubuntu One/config/sql-connections.el"))
-
+(defun open-sql-conn ()
+  (interactive)
+  (find-file "~/config/sql-connections.el"))
 
 ;; =============================================================================
 ;; -- Highlight Functions --
