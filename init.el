@@ -15,23 +15,33 @@
 ;; - Start Session
 ;; #############################################################################
 
-;; -------------------------------------
 ;; Enable debugging
-;; -------------------------------------
-;;(setq debug-on-error t)
+;(setq debug-on-error t)
+
+
 
 ;; =============================================================================
 ;; -- External Files --
 ;; =============================================================================
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/elpa")
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized-theme")
+(let ((default-directory "~/.emacs.d/elpa/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 
 
 ;; =============================================================================
 ;; -- Package Archives --
 ;; =============================================================================
-(require 'package)  ;; TODO - I can't seem to get autoload to work. Why?
+(require 'package)
+
+;; Proxy
+(setq url-proxy-services '(
+                           ("http" . "websense2.health.state.ny.us:8080")
+                           ("https" . "websense2.health.state.ny.us:8080")
+                          )
+      )
+
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -49,10 +59,14 @@
 ;; -- Theme --
 ;; Uncomment preferred theme
 ;; -----------------------------------------------------------------------------
-; TODO 
+; TODO
 ;;(load-theme 'solarized-light t)
 ;;(load-theme 'solarized-dark t)
-(load-theme 'tango-dark t)
+;(load-theme 'tango-dark t)
+;(load-theme 'ir-black t)
+;(load-theme 'sanityinc-solarized-light)
+;(load-theme 'sanityinc-solarized-dark)
+(load-theme 'solarized-dark)
 
 ;; -----------------------------------------------------------------------------
 ;; -- Frames --
@@ -145,3 +159,21 @@
 (load "key-bindings.el" )
 (load "misc.el" )
 (load "mode-specific.el" )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(display-time-mode t)
+ '(show-paren-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
