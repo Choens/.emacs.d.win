@@ -60,13 +60,11 @@
 ;; Uncomment preferred theme
 ;; -----------------------------------------------------------------------------
 ; TODO
-;;(load-theme 'solarized-light t)
-;;(load-theme 'solarized-dark t)
+(require 'solarized-theme)
+;(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 ;(load-theme 'tango-dark t)
 ;(load-theme 'ir-black t)
-;(load-theme 'sanityinc-solarized-light)
-;(load-theme 'sanityinc-solarized-dark)
-(load-theme 'solarized-dark)
 
 ;; -----------------------------------------------------------------------------
 ;; -- Frames --
@@ -168,7 +166,7 @@
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  '(display-time-mode t)
  '(show-paren-mode t))
 (custom-set-faces
