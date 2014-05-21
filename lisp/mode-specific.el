@@ -47,6 +47,7 @@
 (setq comint-move-point-for-output t)
 (setq ess-use-auto-complete t)
 (setq ess-help-own-frame nil)
+(ess-toggle-underscore nil)
 (setq ess-S-assign-key (kbd "C-="))
 (setq ess-toggle-S-assign-key t)
 
