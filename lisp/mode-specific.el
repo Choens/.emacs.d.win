@@ -7,6 +7,7 @@
 ;;   - Ido Mode
 ;;   - Markdown
 ;;   - Org Mode
+;;   - Polymode
 ;;   - Python
 ;;   - SQL Mode
 ;;   - TRAMP Mode
@@ -101,6 +102,24 @@
    (sqlite . t)
    ))
 
+
+
+;; =============================================================================
+;; -- Polymode --
+;; =============================================================================
+
+(require 'polymode-common)
+(require 'polymode-classes)
+(require 'polymode-methods)
+(require 'polymode-export)
+(require 'polymode-weave)
+(require 'poly-R)
+(require 'poly-markdown)
+
+(add-to-list 'auto-mode-alist '("\\.mdw" . poly-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
 
 ;; =============================================================================
 ;; -- Python Mode --
