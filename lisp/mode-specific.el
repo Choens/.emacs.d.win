@@ -2,6 +2,7 @@
 ;; -- Mode Specific Config --
 ;;
 ;;   - Dired
+;;   - Egg
 ;;   - EPA Mode
 ;;   - ESS Mode
 ;;   - Ido Mode
@@ -25,6 +26,10 @@
 (setq dired-recursive-copies 'always)
 (setq dired-dwim-target t)
 
+;; =============================================================================
+;; -- Egg --
+;; =============================================================================
+(require 'egg)
 
 ;; =============================================================================
 ;; -- EPA Mode --
@@ -48,9 +53,10 @@
 (setq ess-use-auto-complete t)
 (setq ess-help-own-frame nil)
 
-(setq ess-S-assign-key (kbd "C-="))
-(ess-toggle-S-assign-key t)
-(ess-toggle-underscore nil)
+;(ess-toggle-underscore nil)
+;(setq ess-S-assign-key (kbd "C-="))
+;(ess-toggle-S-assign-key t)
+
 
 
 ;; =============================================================================
