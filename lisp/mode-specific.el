@@ -29,7 +29,7 @@
 ;; =============================================================================
 ;; -- Egg --
 ;; =============================================================================
-(require 'egg)
+;;(require 'egg)
 
 ;; =============================================================================
 ;; -- EPA Mode --
@@ -70,7 +70,7 @@
 
 
 ;; =============================================================================
-;; -- Markdown Mode
+;; -- Markdown Mode --
 ;; =============================================================================
 (autoload 'markdown-mode "markdown-mode.el" t)
 
@@ -79,8 +79,20 @@
                 ("\\.text" . markdown-mode)
                 ("\\.md" . markdown-mode)
                 ("\\.Rmd" . markdown-mode)
+                ("\\.Rpres" . markdown-mode)
                 )
               auto-mode-alist))
+
+
+;; =============================================================================
+;; -- Magit Mode --
+;; =============================================================================
+;;(add-to-list 'load-path "/path/to/git-modes")
+;;(add-to-list 'load-path "/path/to/magit")
+(eval-after-load 'info
+  '(progn (info-initialize)
+          (add-to-list 'Info-directory-list "/path/to/magit/")))
+(require 'magit)
 
 
 ;; =============================================================================
@@ -128,6 +140,7 @@
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rpres" . poly-noweb+r-mode))
 
 ;; =============================================================================
 ;; -- Python Mode --
