@@ -99,9 +99,21 @@
 ;; -- Org Mode --
 ;; =============================================================================
 
-(setq org-agenda-files (list "~/Documents/ToDo.org"))
-(setq org-default-notes-file "~/Documents/Andy.org")
+;; ORG PIM Config --------------------------------------------------------------
+(setq org-agenda-files (list "~/Git/Notes/agenda.org"))
+(setq org-default-notes-file "~/Git/Notes/notes.org")
 
+(setq org-agenda-files (quote (
+                               "~/Git/Notes/doh"
+                               "~/Git/Notes/kandy/"
+                               "~/Git/Notes/uag"
+                              )))
+(setq org-todo-keywords
+           '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d!)")
+             (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")
+             (sequence "|" "CANCELED(c@/!)")))
+
+;; ORG Programming Config ------------------------------------------------------
 (setq org-src-fontify-natively t)
 (add-hook 'text-mode-hook '(lambda () (auto-fill-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -110,14 +122,14 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
-   (ditaa . t)
+   (ditaa      . t)
    (emacs-lisp . t)
-   (latex . t)
-   (python . t)
-   (R . t)
-   (sh . t)
-   (sql . t)
-   (sqlite . t)
+   (latex      . t)
+   (python     . t)
+   (R          . t)
+   (sh         . t)
+   (sql        . t)
+   (sqlite     . t)
    ))
 
 
