@@ -109,9 +109,11 @@
                                "~/Git/Notes/uag"
                               )))
 (setq org-todo-keywords
-           '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d!)")
+           '((sequence "TODO(t)" "|" "DONE(d!)")
              (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")
-             (sequence "|" "CANCELED(c@/!)")))
+             (sequence "|" "CANCELED(c@/!)")
+             (sequence "|" "WAITING(w@/!)")
+             ))
 
 ;; ORG Programming Config ------------------------------------------------------
 (setq org-src-fontify-natively t)
