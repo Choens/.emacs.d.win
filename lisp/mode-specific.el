@@ -99,8 +99,6 @@
 ;; -- Org Mode --
 ;; =============================================================================
 
-(setq-default py-indent-offset 4)
-
 (setq org-agenda-files (list "~/Documents/ToDo.org"))
 (setq org-default-notes-file "~/Documents/Andy.org")
 
@@ -146,6 +144,7 @@
 ;; -- Python Mode --
 ;; =============================================================================
 
+(setq-default py-indent-offset 4)
 ;; Rather than use python.el
 ;(autoload 'python-mode "python-mode.el" t)
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
