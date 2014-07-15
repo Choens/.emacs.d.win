@@ -100,13 +100,14 @@
 ;; =============================================================================
 
 ;; ORG PIM Config --------------------------------------------------------------
-(setq org-agenda-files (list "~/Git/Notes/agenda.org"))
+;;(setq org-agenda-files (list "~/Git/Notes/agenda.org"))
 (setq org-default-notes-file "~/Git/Notes/notes.org")
 
 (setq org-agenda-files (quote (
-                               "~/Git/Notes/doh"
-                               "~/Git/Notes/kandy/"
-                               "~/Git/Notes/uag"
+                               "~/Git/Notes/andy.org"
+                               "~/Git/Notes/doh-admin.org"
+                               "~/Git/Notes/doh-health-homes.org"
+                               "~/Git/Notes/doh-health-plans.org"
                               )))
 (setq org-todo-keywords
            '((sequence "TODO(t)" "|" "DONE(d!)")
