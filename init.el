@@ -6,17 +6,19 @@
 ;; - Package Repos
 ;; - Editor Settings
 ;;   - Tabs
-;;   - Editor Settings
-;;   - Backup Settings
+;;   - Editing
+;;   - Backup
 ;; - Mode / Language Specific Config
 ;; - Custom Lisp
 ;; - Aliases
 ;; - Keybindings
-;; - Start Session
+;; - Server
 ;; #############################################################################
 
-;; Enable debugging
-;(setq debug-on-error t)
+;; -------------------------------------
+;; Uncomment to enable debugging
+;; -------------------------------------
+;;(setq debug-on-error t)
 
 
 
@@ -34,26 +36,18 @@
 ;; -- Package Archives --
 ;; =============================================================================
 (require 'package)
-
-;; Proxy
-(setq url-proxy-services '(
-                           ("http" . "websense2.health.state.ny.us:8080")
-                           ("https" . "websense2.health.state.ny.us:8080")
-                          )
-      )
-
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("org" . "http://orgmode.org/elpa/") ) )
+                         ("org" . "http://orgmode.org/elpa/")
+                        ))
+
 
 
 ;; =============================================================================
 ;; -- Editor Settings --
 ;; =============================================================================
-
-;;(server-start)
 
 ;; -----------------------------------------------------------------------------
 ;; -- Theme --
@@ -61,8 +55,21 @@
 ;; -----------------------------------------------------------------------------
 ; TODO
 (require 'solarized-theme)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                ;(load-theme 'solarized-light-theme t)
+                (load-theme 'solarized-dark t)
+                ;(load-theme 'spacegray t)
+                ;(load-theme 'ir-black t)
+                )
+              )
+    (load-theme 'solarized-dark t)
+    ;(load-theme 'spacegray t)
+)
+; If the above code works in Windows, remove the following lines.
 ;(load-theme 'solarized-light t)
-(load-theme 'solarized-dark t)
+;(load-theme 'solarized-dark t)
 ;(load-theme 'tango-dark t)
 ;(load-theme 'ir-black t)
 
@@ -73,9 +80,10 @@
 ;; - Enables tool-bar
 ;; - Pop-Up / Special buffers must create new frame
 ;; -----------------------------------------------------------------------------
-;;(menu-bar-mode t)
-;;(tool-bar-mode t)
+;;(menu-bar-mode 1)
+;;(tool-bar-mode 1)
 
+;; - Pop-Up / Special buffers must create new frame  ---------------------------
 ;;(set 'pop-up-frames t)
 ;; (setq special-display-buffer-names
 ;;       '("*R*" "*SQL*" "*grep*" ) )
@@ -91,7 +99,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; -----------------------------------------------------------------------------
-;; -- Editor Settings --
+;; -- Editing --
 ;;
 ;; - Col # in mode bar
 ;; - Scrollbar
@@ -114,9 +122,9 @@
 (set-default 'cursor-type 'bar)
 
 ; EVAL ------------------------
-(setq blink-cursor-mode nil)
-(setq x-stretch-cursor 1)
-(setq global-hl-line-mode t)
+;(setq blink-cursor-mode nil)
+;(setq x-stretch-cursor 1)
+;(setq global-hl-line-mode t)
 ; EVAL ------------------------
 
 (setq visible-bell t)
@@ -133,7 +141,7 @@
 (iimage-mode)
 
 ;; -----------------------------------------------------------------------------
-;; -- Backup Settings --
+;; -- Backup --
 ;;
 ;; - Enables Emacs backups
 ;; - Sets the backup directory (~/emacs.d/backups)
@@ -150,6 +158,14 @@
 (setq kept-old-versions 2 )
 (setq version-control t )
 
+;; -----------------------------------------------------------------------------
+;; Proxy
+;; -----------------------------------------------------------------------------
+(setq url-proxy-services '(
+                           ("http" . "websense2.health.state.ny.us:8080")
+                           ("https" . "websense2.health.state.ny.us:8080")
+                          )
+      )
 
 ;; =============================================================================
 ;; -- Load Custom Lisp --
@@ -157,21 +173,10 @@
 (load "key-bindings.el" )
 (load "misc.el" )
 (load "mode-specific.el" )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
- '(display-time-mode t)
- '(show-paren-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+
+
+;; =============================================================================
+;; Server
+;; =============================================================================
+;;(server-start)
