@@ -1,19 +1,20 @@
+
 ;; #############################################################################
 ;; -- Mode Specific Config --
 ;;
 ;;   - Dired
-;;   - Egg
 ;;   - EPA Mode
 ;;   - ESS Mode
 ;;   - Ido Mode
+;;   - Magit
 ;;   - Markdown
 ;;   - Org Mode
 ;;   - Polymode
 ;;   - Python
 ;;   - SQL Mode
-;;   - TRAMP Mode
-;;   - Web Development
 ;; #############################################################################
+
+
 
 ;; =============================================================================
 ;; -- Dired --
@@ -26,17 +27,15 @@
 (setq dired-recursive-copies 'always)
 (setq dired-dwim-target t)
 
-;; =============================================================================
-;; -- Egg --
-;; =============================================================================
-;;(require 'egg)
+
 
 ;; =============================================================================
 ;; -- EPA Mode --
 ;;
 ;; - Enables Easy PG (GNU PG interface for Emacs)
 ;; =============================================================================
-;(autoload 'epa-file "epa-file.elc")
+(autoload 'epa-file "epa-file.elc")
+
 
 
 ;; =============================================================================
@@ -53,9 +52,9 @@
 (setq ess-use-auto-complete t)
 (setq ess-help-own-frame nil)
 
-;(ess-toggle-underscore nil)
-;(setq ess-S-assign-key (kbd "C-="))
-;(ess-toggle-S-assign-key t)
+; Simple fix for the ESS underscore thing --------------------------------------
+(ess-toggle-underscore nil)
+(ess-toggle-S-assign-key t)
 
 
 
@@ -67,6 +66,22 @@
 ;; =============================================================================
 (ido-mode t)
 (setq ido-enable-flex-matching t)
+
+
+
+;; =============================================================================
+;; -- Magit Mode --
+;; =============================================================================
+
+;; Can I delete this?
+;;(add-to-list 'load-path "/path/to/git-modes")
+;;(add-to-list 'load-path "/path/to/magit")
+;;(eval-after-load 'info
+;;  '(progn (info-initialize)
+;;          (add-to-list 'Info-directory-list "/path/to/magit/")))
+
+(require 'magit)
+
 
 
 ;; =============================================================================
@@ -83,16 +98,6 @@
                 )
               auto-mode-alist))
 
-
-;; =============================================================================
-;; -- Magit Mode --
-;; =============================================================================
-;;(add-to-list 'load-path "/path/to/git-modes")
-;;(add-to-list 'load-path "/path/to/magit")
-(eval-after-load 'info
-  '(progn (info-initialize)
-          (add-to-list 'Info-directory-list "/path/to/magit/")))
-(require 'magit)
 
 
 ;; =============================================================================
@@ -135,6 +140,8 @@
    (sqlite     . t)
    ))
 
+;; Disables org-mode from asking for permission to run stuff -------------------
+;(setq org-confirm-babel-evaluate nil)
 
 
 ;; =============================================================================
@@ -155,29 +162,24 @@
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rpres" . poly-noweb+r-mode))
 
+
+
 ;; =============================================================================
 ;; -- Python Mode --
 ;; =============================================================================
 
-(setq-default py-indent-offset 4)
-;; Rather than use python.el
-;(autoload 'python-mode "python-mode.el" t)
-;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-;; -- IPython --
-;(autoload 'ipython "ipython.el" t)
-;(setq ipython-command "/usr/bin/ipython")
-;(setq-default py-python-command-args '("--pylab"))
-;;(require 'ein)
-
+;; Not relevant. Python not installed on my DOH Windows computer.
 
 
 ;; =============================================================================
 ;; -- SQL Mode --
 ;; =============================================================================
-(setq-default sql-indent-offset 4)
-;(load-file "~/Ubuntu One/config/sql-connections.el" )
 
+;; Stored Passwords ------------------------------------------------------------
+;(load-file "~/config/sql-connections.el" )
+
+;; SQL Editing -----------------------------------------------------------------
+(setq-default sql-indent-offset 4)
 
 (setq auto-mode-alist
       (append '(("\\.sql$" . sql-mode)
@@ -185,13 +187,10 @@
                 ("\\.sp$"  . sql-mode))
               auto-mode-alist))
 
-;(set 'sql-sqlite-program "sqlite3")
-;(set 'sql-sybase-program "sqsh")
-
 ;; Runs SQL commands asynchronously, improves usability for big stuff.
 (set 'sql-preferred-evaluation-method "background")
 
-;; Save SQL History in product-specific files.
+;; Save SQL History in product-specific files ----------------------------------
 ;; Source: http://www.emacswiki.org/emacs/SqlMode
 (defun my-sql-save-history-hook ()
   (let ((lval 'sql-input-ring-file-name)
@@ -209,77 +208,34 @@
 (add-hook 'sql-interactive-mode-hook 'my-sql-save-history-hook)
 
 
-;; Make SQL Returns look nicer (lines things up correctly).
+;; Make SQL Returns look nicer (lines things up correctly) ---------------------
 ;; Source: http://www.emacswiki.org/emacs/SqlMode
-;; (defvar sql-last-prompt-pos 1
-;;   "position of last prompt when added recording started")
-;; (make-variable-buffer-local 'sql-last-prompt-pos)
-;; (put 'sql-last-prompt-pos 'permanent-local t)
+(defvar sql-last-prompt-pos 1
+  "position of last prompt when added recording started")
+(make-variable-buffer-local 'sql-last-prompt-pos)
+(put 'sql-last-prompt-pos 'permanent-local t)
 
-;; (defun sql-add-newline-first (output)
-;;   "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'
-;;     This fixes up the display of queries sent to the inferior buffer
-;;     programatically."
-;;   (let ((begin-of-prompt
-;;          (or (and comint-last-prompt-overlay
-;;                   ;; sometimes this overlay is not on prompt
-;;                   (save-excursion
-;;                     (goto-char (overlay-start comint-last-prompt-overlay))
-;;                     (looking-at-p comint-prompt-regexp)
-;;                     (point)))
-;;              1)))
-;;     (if (> begin-of-prompt sql-last-prompt-pos)
-;;         (progn
-;;           (setq sql-last-prompt-pos begin-of-prompt)
-;;           (concat "\n" output))
-;;       output)))
+(defun sql-add-newline-first (output)
+  "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'
+    This fixes up the display of queries sent to the inferior buffer
+    programatically."
+  (let ((begin-of-prompt
+         (or (and comint-last-prompt-overlay
+                  ;; sometimes this overlay is not on prompt
+                  (save-excursion
+                    (goto-char (overlay-start comint-last-prompt-overlay))
+                    (looking-at-p comint-prompt-regexp)
+                    (point)))
+             1)))
+    (if (> begin-of-prompt sql-last-prompt-pos)
+        (progn
+          (setq sql-last-prompt-pos begin-of-prompt)
+          (concat "\n" output))
+      output)))
 
-;; (defun sqli-add-hooks ()
-;;   "Add hooks to `sql-interactive-mode-hook'."
-;;   (add-hook 'comint-preoutput-filter-functions
-;;             'sql-add-newline-first))
+(defun sqli-add-hooks ()
+  "Add hooks to `sql-interactive-mode-hook'."
+  (add-hook 'comint-preoutput-filter-functions
+            'sql-add-newline-first))
 
-;; (add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
-
-
-;; =============================================================================
-;; -- TRAMP Mode --
-;; =============================================================================
-;(setq tramp-default-method "ssh")
-
-
-;; =============================================================================
-;; -- Web Development --
-;; =============================================================================
-;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
-;(setq auto-mode-alist
-;      (append '(
-;                ("\\.html$" . html-helper-mode)
-;                ("\\.asp$" . html-helper-mode)
-;                ("\\.phtml$" . html-helper-mode)
-;                ("\\.php$" . php-mode)
-;                ("\\.PHP$" . php-mode)
-;                )
-;              auto-mode-alist))
-
-
-
-;; -- PHP --
-;; (autoload 'php-mode "php-mode.el" t)
-
-;; (setq auto-mode-alist
-;;       (append '(("\\.php$" . php-mode)
-;;                 ("\\.PHP$" . php-mode))
-;;               auto-mode-alist))
-
-;; To use abbrev-mode, add lines like this:
-;;   (add-hook 'php-mode-hook
-;;     '(lambda () (define-abbrev php-mode-abbrev-table "ex" "extends")))
-
-;; To make php-mode compatible with html-mode, see http://php-mode.sf.net
-
-;; Many options available under Help:Customize
-;; Options specific to php-mode are in
-;;  Programming/Languages/Php
-;; Since it inherits much functionality from c-mode, look there too
-;;  Programming/Languages/C
+(add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
