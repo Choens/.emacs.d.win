@@ -21,19 +21,15 @@
 ;; -- User-Specific Files --
 (defun open-passwords ()
   (interactive)
-  (find-file "~/Documents/Passwords.org"))
+  (find-file "~/Git/Notes/passwords.org"))
 
 (defun open-andy ()
   (interactive)
-  (find-file "~/Git/Notes/Andy-TODO.org"))
+  (find-file "~/Git/Notes/andy.org"))
 
 (defun open-buy ()
   (interactive)
-  (find-file "~/Git/Notes/Buy-TODO.org"))
-
-(defun open-work ()
-  (interactive)
-  (find-file "~/Git/Notes/Work-TODO.org"))
+  (find-file "~/Git/Notes/buy.org"))
 
 (defun open-templates-file ()
   (interactive)
@@ -46,14 +42,33 @@
 (defun open-templates-snip ()
   (interactive)
   (find-file "~/Git/analytic_templates/snippets"))
+
 ;; -- Emacs-Specific Files --
 (defun open-init ()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun open-lisp ()
+  (interactive)
+  (find-file "~/.emacs.d/lisp/"))
+
 (defun open-sql-conn ()
   (interactive)
   (find-file "~/config/sql-connections.el"))
+
+(defun open-templates-file ()
+  (interactive)
+  (find-file "/media/andy/Sync/Sync/analytic_templates/file_templates"))
+ 
+(defun open-templates-proj ()
+  (interactive)
+  (find-file "/media/andy/Sync/Sync/analytic_templates/project_templates"))
+ 
+(defun open-templates-snip ()
+  (interactive)
+  (find-file "/media/andy/Sync/Sync/analytic_templates/snippets"))
+
+
 
 ;; =============================================================================
 ;; -- Highlight Functions --
@@ -74,18 +89,6 @@
 	(interactive)
 	(highlight-phrase "NOTE - "))
 
-
-;; =============================================================================
-;; -- toggle-fullscreen --
-;; Source: http://www.emacswiki.org/emacs/FullScreen#toc17
-;; =============================================================================
-;(defun toggle-fullscreen ()
-;  "Toggles full screen on X11"
-;  (interactive)
-;  (when (eq window-system 'x)
-;    (set-frame-parameter
-;     nil 'fullscreen
-;     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
 
 
 ;; =============================================================================
