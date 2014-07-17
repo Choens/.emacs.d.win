@@ -46,6 +46,9 @@
 ;; -- Mode Specific Key Bindings --
 ;; =============================================================================
 
+;; -- Ess --
+(setq ess-S-assign-key (kbd "C-x <"))
+
 ;; -- Org-Mode --
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
