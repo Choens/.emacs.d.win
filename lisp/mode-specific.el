@@ -44,7 +44,7 @@
 ;; ESS is the layer connecting Emacs to R, SAS, etc.
 ;; -
 ;; =============================================================================
-(autoload 'ess-R-data-view "ess-R-data-view.el")
+;;(autoload 'ess-R-data-view "ess-R-data-view.el")
 (setq-default ess-indent-offset 4)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
@@ -53,8 +53,8 @@
 (setq ess-help-own-frame nil)
 
 ; Simple fix for the ESS underscore thing --------------------------------------
-(ess-toggle-underscore nil)
-(ess-toggle-S-assign-key t)
+(setq ess-toggle-underscore nil)
+(setq ess-toggle-S-assign-key t)
 
 
 
@@ -115,7 +115,7 @@
                                "~/Git/Notes/doh-health-plans.org"
                               )))
 (setq org-todo-keywords
-           '((sequence "TODO(t)" "|" "DONE(d!)")
+           '((sequence "TODO(t@)" "IN PROGRESS(i@)" "|" "DONE(d@/!)")
              (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")
              (sequence "|" "CANCELED(c@/!)")
              (sequence "|" "WAITING(w@/!)")
