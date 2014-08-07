@@ -140,6 +140,8 @@
 (put 'narrow-to-region 'disabled nil)
 (iimage-mode)
 
+(setq default-directory "~")
+
 ;; -----------------------------------------------------------------------------
 ;; -- Backup --
 ;;
