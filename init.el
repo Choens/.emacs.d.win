@@ -124,9 +124,9 @@
 ; EVAL ------------------------
 ;(setq blink-cursor-mode nil)
 ;(setq x-stretch-cursor 1)
-;(setq global-hl-line-mode t)
 ; EVAL ------------------------
 
+(setq global-hl-line-mode t)
 (setq visible-bell t)
 (setq fill-column 80)
 (setq truncate-lines t)
@@ -140,7 +140,7 @@
 (put 'narrow-to-region 'disabled nil)
 (iimage-mode)
 
-(setq default-directory "~")
+;;(setq default-directory "C:/Users/AXC38/")
 
 ;; -----------------------------------------------------------------------------
 ;; -- Backup --
