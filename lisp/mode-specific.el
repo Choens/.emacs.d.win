@@ -73,14 +73,6 @@
 ;; =============================================================================
 ;; -- Magit Mode --
 ;; =============================================================================
-
-;; Can I delete this?
-;;(add-to-list 'load-path "/path/to/git-modes")
-;;(add-to-list 'load-path "/path/to/magit")
-;;(eval-after-load 'info
-;;  '(progn (info-initialize)
-;;          (add-to-list 'Info-directory-list "/path/to/magit/")))
-
 (require 'magit)
 
 
