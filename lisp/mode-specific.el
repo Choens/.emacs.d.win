@@ -106,6 +106,10 @@
                                "~/Git/Notes/doh-admin.org"
                                "~/Git/Notes/doh-health-homes.org"
                                "~/Git/Notes/doh-health-plans.org"
+                               "~/Git/Notes/doh-hrob.org"
+                               "~/Git/Notes/habits.org"
+                               "~/Git/Notes/uag-website.org"
+                               "~/Git/Notes/uag-1st-friday-website.org"
                               )))
 (setq org-todo-keywords
            '((sequence "TODO(t@)" "IN PROGRESS(i@)" "|" "DONE(d@/!)")
