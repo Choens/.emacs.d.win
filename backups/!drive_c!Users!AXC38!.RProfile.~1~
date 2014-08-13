@@ -1,4 +1,0 @@
-.First <- function() {
-    print("Works!")
-    a <- 1
-)

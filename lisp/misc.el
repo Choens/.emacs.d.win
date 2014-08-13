@@ -56,19 +56,6 @@
   (interactive)
   (find-file "~/config/sql-connections.el"))
 
-(defun open-templates-file ()
-  (interactive)
-  (find-file "/media/andy/Sync/Sync/analytic_templates/file_templates"))
- 
-(defun open-templates-proj ()
-  (interactive)
-  (find-file "/media/andy/Sync/Sync/analytic_templates/project_templates"))
- 
-(defun open-templates-snip ()
-  (interactive)
-  (find-file "/media/andy/Sync/Sync/analytic_templates/snippets"))
-
-
 
 ;; =============================================================================
 ;; -- Highlight Functions --
