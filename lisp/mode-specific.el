@@ -103,13 +103,11 @@
 
 (setq org-agenda-files (quote (
                                "~/Git/Notes/andy.org"
-                               "~/Git/Notes/doh-admin.org"
-                               "~/Git/Notes/doh-health-homes.org"
-                               "~/Git/Notes/doh-health-plans.org"
-                               "~/Git/Notes/doh-hrob.org"
+                               "~/Git/Notes/doh-meetings.org"
+                               "~/Git/Notes/doh-phone-calls.org"
+                               "~/Git/Notes/doh-tasks.org"
                                "~/Git/Notes/habits.org"
-                               "~/Git/Notes/uag-website.org"
-                               "~/Git/Notes/uag-1st-friday-website.org"
+                               "~/Git/Notes/uag.org"
                               )))
 (setq org-todo-keywords
            '((sequence "TODO(t@)" "IN PROGRESS(i@)" "|" "DONE(d@/!)")
