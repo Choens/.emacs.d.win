@@ -21,7 +21,7 @@
 ;; -- User-Specific Files --
 (defun open-passwords ()
   (interactive)
-  (find-file "~/Git/Notes/passwords.org"))
+  (find-file "~/Git/Notes/passwords.org.gpg"))
 
 (defun open-andy ()
   (interactive)
