@@ -25,11 +25,11 @@
 
 (defun open-andy ()
   (interactive)
-  (find-file "~/Git/Notes/andy.org"))
+  (find-file "~/Notes/andy.org"))
 
 (defun open-buy ()
   (interactive)
-  (find-file "~/Git/Notes/buy.org"))
+  (find-file "~/Notes/buy.org"))
 
 (defun open-templates-file ()
   (interactive)
