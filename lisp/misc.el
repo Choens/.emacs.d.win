@@ -19,17 +19,17 @@
 ;; =============================================================================
 
 ;; -- User-Specific Files --
-(defun open-passwords ()
-  (interactive)
-  (find-file "~/Git/Notes/passwords.org.gpg"))
-
-(defun open-andy ()
-  (interactive)
-  (find-file "~/Notes/andy.org"))
-
 (defun open-buy ()
   (interactive)
   (find-file "~/Notes/buy.org"))
+
+(defun open-notes ()
+  (interactive)
+  (find-file "~/Notes/"))
+
+(defun open-passwords ()
+  (interactive)
+  (find-file "~/Git/Notes/passwords.org.gpg"))
 
 (defun open-templates-file ()
   (interactive)
