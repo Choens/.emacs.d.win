@@ -23,6 +23,10 @@
   (interactive)
   (find-file "~/Notes/buy.org"))
 
+(defun open-git ()
+  (interactive)
+  (find-file "~/Git/"))
+
 (defun open-notes ()
   (interactive)
   (find-file "~/Notes/"))
