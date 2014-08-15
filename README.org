@@ -1,0 +1,5 @@
+* README - .emacs.d.win
+
+This is my Emacs config for Windows. It parallels my [[https://github.com/Choens/.emacs.d.lin][.emacs.d.lin]]
+configuration. Although I have used Emacs on Linux for years, I am a
+rookie on Windows.
