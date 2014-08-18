@@ -104,7 +104,6 @@
 (setq org-agenda-files (quote (
                                "~/Notes/andy.org"
                                "~/Notes/doh-meetings.org"
-                               "~/Notes/doh-phone-calls.org"
                                "~/Notes/doh-tasks.org"
                                "~/Notes/habits.org"
                                "~/Notes/uag.org"
