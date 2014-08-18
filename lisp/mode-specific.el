@@ -102,7 +102,7 @@
 (setq org-default-notes-file "~/Notes/notes.org")
 
 (setq org-agenda-files (quote (
-                               "~/Notes/andy.org"
+                               "~/Notes/andy-tasks.org"
                                "~/Notes/doh-meetings.org"
                                "~/Notes/doh-tasks.org"
                                "~/Notes/habits.org"
