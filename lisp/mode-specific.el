@@ -106,7 +106,7 @@
                                "~/Notes/doh-meetings.org"
                                "~/Notes/doh-tasks.org"
                                "~/Notes/habits.org"
-                               "~/Notes/uag.org"
+                               "~/Notes/uag-tasks.org"
                               )))
 (setq org-todo-keywords
            '((sequence "TODO(t@)" "IN PROGRESS(i@)" "|" "DONE(d@/!)")
