@@ -50,7 +50,7 @@
 ;; -- Emacs-Specific Files --
 (defun open-init ()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file "~/.emacs.d/"))
 
 (defun open-lisp ()
   (interactive)
