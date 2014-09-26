@@ -18,13 +18,14 @@
 ;; -------------------------------------
 ;; Uncomment to enable debugging
 ;; -------------------------------------
-;;(setq debug-on-error t)
+(setq debug-on-error t)
 
 
 
 ;; =============================================================================
 ;; -- External Files --
 ;; =============================================================================
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/elpa")
 (let ((default-directory "~/.emacs.d/elpa/"))
@@ -33,8 +34,25 @@
 
 
 ;; =============================================================================
+;; Proxy
+;; =============================================================================
+
+(setq url-proxy-services
+      '(
+        ("http" . "localhost:8888")
+        ("https" . "localhost:8888")
+        )
+      )
+
+        ;("http" . "axc38@websense2.health.state.ny.us:8080")
+        ;("https" . "axc38@websense2.health.state.ny.us:8080")
+
+
+
+;; =============================================================================
 ;; -- Package Archives --
 ;; =============================================================================
+
 (require 'package)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -160,14 +178,7 @@
 (setq kept-old-versions 2 )
 (setq version-control t )
 
-;; -----------------------------------------------------------------------------
-;; Proxy
-;; -----------------------------------------------------------------------------
-(setq url-proxy-services '(
-                           ("http" . "websense2.health.state.ny.us:8080")
-                           ("https" . "websense2.health.state.ny.us:8080")
-                          )
-      )
+
 
 ;; =============================================================================
 ;; -- Load Custom Lisp --

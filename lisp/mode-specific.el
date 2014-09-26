@@ -1,16 +1,20 @@
 ;; #############################################################################
 ;; -- Mode Specific Config --
 ;;
-;;   - Dired
-;;   - EPA Mode
-;;   - ESS Mode
-;;   - Ido Mode
-;;   - Magit
-;;   - Markdown
-;;   - Org Mode
-;;   - Polymode
-;;   - Python
-;;   - SQL Mode
+;; - Dired
+;; - EPA
+;; - ESHELL
+;; - ESS
+;; - Ido
+;; - flx
+;; - Magit
+;; - Markdown
+;; - Org Mode
+;; - Perspective
+;; - Polymode
+;; - Projectile
+;; - Python
+;; - SQL
 ;;
 ;;
 ;; #############################################################################
@@ -31,7 +35,7 @@
 
 
 ;; =============================================================================
-;; -- EPA Mode --
+;; -- EPA --
 ;;
 ;; - Enables Easy PG (GNU PG interface for Emacs)
 ;; =============================================================================
@@ -40,7 +44,7 @@
 
 
 ;; =============================================================================
-;; -- ESS Mode --
+;; -- ESS --
 ;;
 ;; ESS is the layer connecting Emacs to R, SAS, etc.
 ;; -
@@ -60,25 +64,36 @@
 
 
 ;; =============================================================================
-;; -- Ido Mode --
+;; -- Ido --
 ;;
 ;; - Enables IDO Mode
 ;; - Enables flexible matching
 ;; =============================================================================
 (ido-mode t)
+(ido-everywhere 1)
 (setq ido-enable-flex-matching t)
-
+;; -----------------------------------------------------------------------------
+;; -- flx / flx-ido --
+;;
+;; https://github.com/lewang/flx
+;; -----------------------------------------------------------------------------
+(require 'flx-ido)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+(setq gc-cons-threshold 20000000)
 
 
 ;; =============================================================================
-;; -- Magit Mode --
+;; -- Magit --
 ;; =============================================================================
 (require 'magit)
 
 
 
 ;; =============================================================================
-;; -- Markdown Mode --
+;; -- Markdown --
 ;; =============================================================================
 (autoload 'markdown-mode "markdown-mode.el" t)
 
@@ -138,6 +153,19 @@
 ;(setq org-confirm-babel-evaluate nil)
 
 
+
+;; =============================================================================
+;; -- Perspective --
+;;
+;; https://github.com/nex3/perspective-el
+;;
+;; =============================================================================
+(require 'perspective)
+(persp-mode)
+(require 'persp-projectile)
+
+
+
 ;; =============================================================================
 ;; -- Polymode --
 ;; =============================================================================
@@ -159,6 +187,16 @@
 
 
 ;; =============================================================================
+;; -- Projectile --
+;; =============================================================================
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
+(setq projectile-switch-project-action 'projectile-dired)
+
+
+;; =============================================================================
 ;; -- Python Mode --
 ;; =============================================================================
 
@@ -166,7 +204,7 @@
 
 
 ;; =============================================================================
-;; -- SQL Mode --
+;; -- SQL --
 ;; =============================================================================
 
 ;; SQL Editing -----------------------------------------------------------------
@@ -177,6 +215,16 @@
                 ("\\.tbl$" . sql-mode)
                 ("\\.sp$"  . sql-mode))
               auto-mode-alist))
+
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
+    (defun my-sql-mode-hook ()
+      (define-key sql-mode-map (kbd "RET") 'newline-and-indent)
+
+      ;; Make # start a new line comment in SQL. This is MySQL-specific
+      ;; syntax.
+
+      (modify-syntax-entry ?# "< b" sql-mode-syntax-table)
+      (set-syntax-table sql-mode-syntax-table))
 
 ;; Runs SQL commands asynchronously, improves usability for big stuff.
 (set 'sql-preferred-evaluation-method "background")
