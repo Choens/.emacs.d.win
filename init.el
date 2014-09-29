@@ -3,8 +3,10 @@
 ;;
 ;; Sections:
 ;; - External Files
+;; - Proxy Settings
 ;; - Package Repos
 ;; - Editor Settings
+;;   - Theme
 ;;   - Tabs
 ;;   - Editing
 ;;   - Backup
@@ -12,7 +14,7 @@
 ;; - Custom Lisp
 ;; - Aliases
 ;; - Keybindings
-;; - Server
+;; - Session
 ;; #############################################################################
 
 ;; -------------------------------------
@@ -39,13 +41,10 @@
 
 (setq url-proxy-services
       '(
-        ("http" . "localhost:8888")
+        ("http"  . "localhost:8888")
         ("https" . "localhost:8888")
         )
       )
-
-        ;("http" . "axc38@websense2.health.state.ny.us:8080")
-        ;("https" . "axc38@websense2.health.state.ny.us:8080")
 
 
 
@@ -71,7 +70,6 @@
 ;; -- Theme --
 ;; Uncomment preferred theme
 ;; -----------------------------------------------------------------------------
-; TODO
 (require 'solarized-theme)
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -93,28 +91,24 @@
 
 ;; -----------------------------------------------------------------------------
 ;; -- Frames --
-;;
-;; - Disables menu-bar
-;; - Enables tool-bar
-;; - Pop-Up / Special buffers must create new frame
 ;; -----------------------------------------------------------------------------
-;;(menu-bar-mode 1)
-;;(tool-bar-mode 1)
 
-;; - Pop-Up / Special buffers must create new frame  ---------------------------
+;; Menu-bar / Toolbar ----------------------------------------------------------
+;; 1 = On, 0 = Off
+(menu-bar-mode 1)
+(tool-bar-mode 0)
+
+;; Pop-Up / Special buffers must create new frame  -----------------------------
 ;;(set 'pop-up-frames t)
 ;; (setq special-display-buffer-names
 ;;       '("*R*" "*SQL*" "*grep*" ) )
 
 ;; -----------------------------------------------------------------------------
 ;; -- Tabs --
-;;
-;; - Sets default indentation
-;; - Use spaces not tabs
 ;; -----------------------------------------------------------------------------
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil) ;; Use spaces, not tabs!
 
 ;; -----------------------------------------------------------------------------
 ;; -- Editing --
@@ -150,13 +144,16 @@
 (setq truncate-lines t)
 (setq display-time-day-and-date t)
 (display-time)
-(setq initial-scratch-message
-    "To err is human... to really foul up requires the root password.\n\n")
 (setq cua-mode t)
 (cua-selection-mode t)
 (delete-selection-mode 1)
 (put 'narrow-to-region 'disabled nil)
 (iimage-mode)
+
+;; Splash Screen Options -------------------------------------------------------
+;;(setq initial-scratch-message
+;;    "To err is human... to really foul up requires the root password.\n\n")
+(setq inhibit-splash-screen t) ;; Hides splash screen, I jump straight to org.
 
 ;;(setq default-directory "C:/Users/AXC38/")
 
@@ -190,6 +187,9 @@
 
 
 ;; =============================================================================
-;; Server
+;; Session Start
 ;; =============================================================================
-;;(server-start)
+(server-start)
+(org-agenda-list 1)
+(delete-other-windows)
+
