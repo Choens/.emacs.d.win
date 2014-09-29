@@ -11,4 +11,5 @@ url/
 # Files
 ede-projects.el
 /#*/#
-
+*.eld
+*.cache
