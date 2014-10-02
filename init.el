@@ -74,20 +74,21 @@
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
-                ;(load-theme 'solarized-light-theme t)
                 (load-theme 'solarized-dark t)
-                ;(load-theme 'spacegray t)
+                ;(load-theme 'solarized-light t)
+                ;(load-theme 'tango-dark t)
                 ;(load-theme 'ir-black t)
+                ;(load-theme 'spacegray t)
                 )
               )
     (load-theme 'solarized-dark t)
+    ;(load-theme 'solarized-light t)
+    ;(load-theme 'tango-dark t)
+    ;(load-theme 'ir-black t)
     ;(load-theme 'spacegray t)
 )
 ; If the above code works in Windows, remove the following lines.
-;(load-theme 'solarized-light t)
-;(load-theme 'solarized-dark t)
-;(load-theme 'tango-dark t)
-;(load-theme 'ir-black t)
+
 
 ;; -----------------------------------------------------------------------------
 ;; -- Frames --
@@ -151,11 +152,9 @@
 (iimage-mode)
 
 ;; Splash Screen Options -------------------------------------------------------
-;;(setq initial-scratch-message
-;;    "To err is human... to really foul up requires the root password.\n\n")
-(setq inhibit-splash-screen t) ;; Hides splash screen, I jump straight to org.
-
-;;(setq default-directory "C:/Users/AXC38/")
+(setq initial-scratch-message
+    "To err is human... to really foul up requires the root password.\n\n")
+(setq inhibit-splash-screen t)
 
 ;; -----------------------------------------------------------------------------
 ;; -- Backup --
@@ -190,6 +189,6 @@
 ;; Session Start
 ;; =============================================================================
 (server-start)
-(org-agenda-list 1)
-(delete-other-windows)
+;(org-agenda-list 1)
+;(delete-other-windows)
 
