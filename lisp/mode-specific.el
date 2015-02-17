@@ -46,10 +46,11 @@
 ;; =============================================================================
 ;; -- ESS --
 ;;
-;; ESS is the layer connecting Emacs to R, SAS, etc.
-;; -
+;; - ESS is the layer connecting Emacs to R, SAS, etc.
 ;; =============================================================================
 ;;(autoload 'ess-R-data-view "ess-R-data-view.el")
+;;(setq-default ess-directory-containing-R "C:/Program Files/R/R-3.1.2/bin/x64")
+(setq inferior-R-program-name "C:/Program Files/R/R-3.1.2/bin/x64/Rterm.exe")
 (setq-default ess-indent-offset 4)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
@@ -58,8 +59,7 @@
 (setq ess-help-own-frame nil)
 
 ; Simple fix for the ESS underscore thing --------------------------------------
-(setq ess-toggle-underscore nil)
-(setq ess-toggle-S-assign-key t)
+;(ess-toggle-underscore nil)
 
 
 
@@ -113,7 +113,7 @@
 ;; =============================================================================
 
 ;; ORG PIM Config --------------------------------------------------------------
-;;(setq org-agenda-files (list "~/Git/Notes/agenda.org"))
+(setq org-agenda-files (list "~/Git/Notes/agenda.org"))
 (setq org-default-notes-file "~/Notes/notes.org")
 
 (setq org-agenda-files (quote (
@@ -150,9 +150,9 @@
    ))
 
 ;; Disables org-mode from asking for permission to run stuff -------------------
-;(setq org-confirm-babel-evaluate nil)
+(setq org-confirm-babel-evaluate nil)
 
-
+(setq org-html-doctype "html5")
 
 ;; =============================================================================
 ;; -- Perspective --

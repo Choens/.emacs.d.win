@@ -33,16 +33,33 @@
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/ir-black-theme-20130302.2355")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/solarized-theme-20150211.935")
+
 
 
 ;; =============================================================================
 ;; Proxy
 ;; =============================================================================
 
+;;(setq url-proxy-services
+;;      '(
+;;        ("http"  . "websense2.health.ny.us:8080")
+;;        ("https" . "websense2.health.ny.us:8080")
+;;        )
+;;      )
+
+;;(setq url-proxy-services
+;;      '(
+;;        ("http"  . "websense2.health.ny.gov:8080")
+;;        ("https" . "websense2.health.ny.gov:8080")
+;;        )
+;;      )
+
 (setq url-proxy-services
       '(
-        ("http"  . "localhost:8888")
-        ("https" . "localhost:8888")
+        ("http"  . "127.0.0.1:8888")
+        ("https" . "127.0.0.1:8888")
         )
       )
 
@@ -72,15 +89,12 @@
 ;; -----------------------------------------------------------------------------
 (require 'solarized-theme)
 (if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (load-theme 'solarized-dark t)
-                ;(load-theme 'solarized-light t)
-                ;(load-theme 'tango-dark t)
-                ;(load-theme 'ir-black t)
-                ;(load-theme 'spacegray t)
-                )
-              )
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (set-frame-parameter frame
+                                 'background-mode
+                                 (if (display-graphic-p frame) 'light 'dark))
+            (load-theme 'solarized-dark t)))
     (load-theme 'solarized-dark t)
     ;(load-theme 'solarized-light t)
     ;(load-theme 'tango-dark t)
@@ -188,7 +202,7 @@
 ;; =============================================================================
 ;; Session Start
 ;; =============================================================================
-(server-start)
+;(server-start)
 ;(org-agenda-list 1)
 ;(delete-other-windows)
 
